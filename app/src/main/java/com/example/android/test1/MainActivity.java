@@ -22,8 +22,9 @@ import java.text.NumberFormat;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    int quantity=0;
-    int price=3;
+    int quantity = 0;
+    int price = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,27 +37,20 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         String PriceMessage = "Total number of item = " + quantity + "\r\nTotal price = $" + quantity * price + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
         displayMessage(PriceMessage);
-        if (view.getId() == R.id.Border) {
-            Intent i = new Intent(MainActivity.this, Display.class);
-            startActivity(i);
-        }
-
     }
 
     /**
      * /
      *  this methode starts a new activity- i'm starting the activity in display.java and Displlay.xml
      */
-    /**
-    public void onButtonClick(View v) {
-        if (v.getId() == R.id.Bnext) {
-            Intent i = new Intent(MainActivity.this, Display.class);
-            startActivity(i);
-        }
 
+     public void onButtonClick(View v) {
+         if (v.getId() == R.id.Bnext) {
+         Intent i = new Intent(MainActivity.this, Display.class);
+         startActivity(i);
+         }
+     }
 
-    }
-     **/
     /**
      * This method is called when the + is clicked.
      */
@@ -93,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * this method displays the given text on the screen.
      */
     private void displayMessage(String message) {
