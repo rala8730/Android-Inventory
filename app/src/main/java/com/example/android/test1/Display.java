@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.android.test1.MainActivity;
+import com.example.android.test1.R;
+
 import java.text.NumberFormat;
 
 
@@ -19,7 +23,7 @@ public class Display extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display);
     }
-    int quantity =new  MainActivity().quantity;
+    int quantity =new MainActivity().mochaquantity;
     int price =new MainActivity().price;
     /**
      * This method is called when the order button is clicked.
