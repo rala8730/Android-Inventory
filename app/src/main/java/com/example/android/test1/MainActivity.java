@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.test1.R;
@@ -25,10 +26,10 @@ import java.text.NumberFormat;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
+    Button clk;
     int lattequantity, mochaquantity, crappuccinoquantity = 0;
-    //int totalquantity = lattequantity + mochaquantity + crappuccinoquantity;
     int price = 3;
-    int crappuccinoEachPrice=5;
+    int crappuccinoEachPrice=3;
     double tax = 0.1*(lattequantity + mochaquantity + crappuccinoquantity);
 
     @Override
@@ -36,32 +37,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    public void submitOrder(View v){
+        Intent jumppage= new Intent(MainActivity.this, com.example.android.test1.Display.class);
+        startActivity(jumppage);
+        //total(v);
+    }
 
-    /**
-     * This method is called when the order button is clicked.
-     */
-    public void submitOrder(View view)
+    public void total(View view)
     {
-        String PriceMessage = "\r\nTotal number of item = " + (lattequantity+mochaquantity+crappuccinoquantity) + "\r\nLatte = " + lattequantity+ "\r\nCrappuccino = "+crappuccinoquantity+ "\r\nMocha = "+ mochaquantity +"\r\nTotal price = $" + ((tax)+((lattequantity+mochaquantity+crappuccinoquantity)*(price))) + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
+        String PriceMessage = "\r\nTotal number of item = " + (lattequantity + mochaquantity + crappuccinoquantity) + "\r\nLatte = " + lattequantity + "\r\nCrappuccino = " + crappuccinoquantity + "\r\nMocha = " + mochaquantity + "\r\nTotal price = $" + ((tax) + ((lattequantity + mochaquantity + crappuccinoquantity) * (price))) + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
         displayMessage(PriceMessage);
-        /**
-
-         **/
     }
-    //comments for receipt
 
-    /**
-     * /
-     * this methode starts a new activity- i'm starting the activity in display.java and Displlay.xml
-     */
-/*
-    public void onButtonClick(View v) {
-        if (v.getId() == R.id.Bnext) {
-            Intent i = new Intent(MainActivity.this, Display.class);
-            startActivity(i);
-        }
+    public void clear(View view)
+    {
+        Intent jumppage=new Intent(MainActivity.this,Main2Activity.class);
+        startActivity(jumppage);
     }
-    */
 
     /**
      * This method is called when the + is clicked.
@@ -118,43 +110,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * This method displays the given quantity value on the screen.
-     */
-
-    /**   private void display(int number) {
-
-     TextView quantityTextView = (TextView) findViewById(R.id.Mocaquantity_text_view);
-     quantityTextView.setText("" + number);
-
-     }
-     */
 
     /**
      * This method displays the given price on the screen.
      */
-    private void mocadisplay(int number) {
+    public void mocadisplay(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.Mocaquantity_text_view);
         quantityTextView.setText("" + number);
     }
 
-    private void crappucinodisplay(int number) {
-        /**
+    public void crappucinodisplay(int number) {
+        /*
          * displays the quantity
          */
         TextView quantityTextView = (TextView) findViewById(R.id.crappuccinoprice_text_view);
         quantityTextView.setText("" + number);
     }
-    private void crappuccinoprice(int number)
+    public void crappuccinoprice(int number)
     {
-        /**
+        /*
          * displays the price per
          */
         TextView priceTextView = (TextView) findViewById(R.id.crappuccinoquantity);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
-    private void lattedisplay(int number) {
+    public void lattedisplay(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.lattequantity_text_view);
         quantityTextView.setText("" + number);
     }
@@ -164,13 +145,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * this method displays the given text on the screen in the end of line .
      */
-    private void displayMessage(String message) {
+    public void displayMessage(String message) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(message);
 
     }
 
-    /** things to add
+    /* things to add
      * welcome message  with welcome screen
      * list of inventory  clothing section  or bakery section
      *
