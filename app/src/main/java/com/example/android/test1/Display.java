@@ -22,16 +22,12 @@ public class Display extends AppCompatActivity {
         int totalItems = getIntent().getIntExtra(MainActivity.TOTAL_ITEMS, 0);
         TextView view = (TextView) findViewById(R.id.quantity_value);
         view.setText(String.valueOf(totalItems));
+        int totalprice=getIntent().getIntExtra(MainActivity.TOTAL_Price,0);
 
 
     }
     public void finalorder(View v){
 
-    }/*
-    public void total(View view)
-    {
-        String PriceMessage = "\r\nTotal number of item = " + (lattequantity + mochaquantity + crappuccinoquantity) + "\r\nLatte = " + lattequantity + "\r\nCrappuccino = " + crappuccinoquantity + "\r\nMocha = " + mochaquantity + "\r\nTotal price = $" + ((tax) + ((lattequantity + mochaquantity + crappuccinoquantity) * (price))) + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
-        displayMessage(PriceMessage);
-    }*/
+    }
 
 }

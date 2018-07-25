@@ -28,12 +28,13 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
     public static final String TOTAL_ITEMS = "totalItems";
+    public static final String TOTAL_Price="totalprice";
 
     Button clk;
     int lattequantity, mochaquantity, crappuccinoquantity = 0;
     int price = 3;
     int crappuccinoEachPrice=3;
-    double tax = 0.1*(lattequantity + mochaquantity + crappuccinoquantity);
+    double tax = 0.1*((lattequantity + mochaquantity + crappuccinoquantity)*price);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View v){
         Intent jumppage= new Intent(MainActivity.this, com.example.android.test1.Display.class);
         jumppage.putExtra(TOTAL_ITEMS, lattequantity + mochaquantity + crappuccinoquantity);
+        jumppage.putExtra(TOTAL_Price,(lattequantity+mochaquantity+crappuccinoquantity)*price + tax);
         startActivity(jumppage);
-        //total(v);
     }
 
     public void total(View view)
     {
-        String PriceMessage = "\r\nTotal number of item = " + (lattequantity + mochaquantity + crappuccinoquantity) + "\r\nLatte = " + lattequantity + "\r\nCrappuccino = " + crappuccinoquantity + "\r\nMocha = " + mochaquantity + "\r\nTotal price = $" + ((tax) + ((lattequantity + mochaquantity + crappuccinoquantity) * (price))) + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
+        String PriceMessage = (lattequantity + mochaquantity + crappuccinoquantity) + "\r\nLatte = " + lattequantity + "\r\nCrappuccino = " + crappuccinoquantity + "\r\nMocha = " + mochaquantity + "\r\nTotal price = $" + ((tax) + ((lattequantity + mochaquantity + crappuccinoquantity) * (price))) + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
         displayMessage(PriceMessage);
     }
 
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mochadecrement(View view)
+
     {
         if (mochaquantity > 0)
         {
