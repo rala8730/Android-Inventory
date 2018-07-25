@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import java.text.NumberFormat;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
+    public static final String TOTAL_ITEMS = "totalItems";
+
     Button clk;
     int lattequantity, mochaquantity, crappuccinoquantity = 0;
     int price = 3;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void submitOrder(View v){
         Intent jumppage= new Intent(MainActivity.this, com.example.android.test1.Display.class);
+        jumppage.putExtra(TOTAL_ITEMS, lattequantity + mochaquantity + crappuccinoquantity);
         startActivity(jumppage);
         //total(v);
     }
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void mochaincrement(View view)
     {
+        Log.d("Main", getResources().getResourceEntryName(view.getId()));
         mochaquantity = mochaquantity + 1;
         mocadisplay(mochaquantity);
     }

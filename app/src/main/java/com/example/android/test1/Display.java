@@ -19,6 +19,11 @@ public class Display extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display);
 
+        int totalItems = getIntent().getIntExtra(MainActivity.TOTAL_ITEMS, 0);
+        TextView view = (TextView) findViewById(R.id.quantity_value);
+        view.setText(String.valueOf(totalItems));
+
+
     }
     public void finalorder(View v){
 
