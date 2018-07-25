@@ -74,7 +74,6 @@
                                 android:layout_height="48dp"
                                 android:layout_marginRight="8dp"
                                 android:layout_weight="0"
-                                android:onClick="mochaincrement"
                                 android:text="+" />
 
                             <TextView
@@ -99,10 +98,10 @@
 
                             <Button
                                 android:layout_width="48dp"
+                                android:id="@+id/mocha_decrement_id"
                                 android:layout_height="48dp"
                                 android:layout_marginRight="8dp"
                                 android:layout_weight="0"
-                                android:onClick="mochadecrement"
                                 android:text="-" />
                         </LinearLayout>
 
@@ -144,23 +143,14 @@
 
                             <Button
                                 android:layout_width="48dp"
+                                android:id="@+id/crappuccino_increment_id"
                                 android:layout_height="48dp"
                                 android:layout_marginRight="8dp"
                                 android:layout_weight="0"
-                                android:onClick="crappucinoincrement"
                                 android:text="+" />
 
                             <TextView
-                                android:id="@+id/crappuccino_pricepereach"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:layout_weight="0"
-                                android:text="price = $3/ea"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp" />
-                            <TextView
-                                android:id="@+id/crappuccinoquantity"
+                                android:id="@+id/crappuccinoquantity_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="8dp"
@@ -170,7 +160,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/crappuccinoprice_text_view"
+                                android:id="@+id/crappuccino_text_view"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="8dp"
@@ -181,10 +171,10 @@
 
                             <Button
                                 android:layout_width="48dp"
+                                android:id="@+id/crappucino_decrement_id"
                                 android:layout_height="48dp"
                                 android:layout_marginRight="8dp"
                                 android:layout_weight="0"
-                                android:onClick="crappucinodecrement"
                                 android:text="-" />
                         </LinearLayout>
 
@@ -230,10 +220,10 @@
 
                             <Button
                                 android:layout_width="48dp"
+                                android:id="@+id/latteprice_increment_id"
                                 android:layout_height="48dp"
                                 android:layout_marginRight="8dp"
                                 android:layout_weight="0"
-                                android:onClick="latteincrement"
                                 android:text="+" />
 
                             <TextView
@@ -259,9 +249,9 @@
                             <Button
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
+                                android:id="@+id/latteprice_decrement_id"
                                 android:layout_marginRight="8dp"
                                 android:layout_weight="0"
-                                android:onClick="lattedecrement"
                                 android:text="-" />
                         </LinearLayout>
 

@@ -29,17 +29,31 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
     public static final String TOTAL_ITEMS = "totalItems";
     public static final String TOTAL_Price="totalprice";
-
-    Button clk;
+    Button mocha_i, latte_i, crappuccino_i, mocha_d, latte_d, crappuccino_d;
     int lattequantity, mochaquantity, crappuccinoquantity = 0;
     int price = 3;
-    int crappuccinoEachPrice=3;
+    int crappuccinoEachPrice,mocaEachPrice,latteEachPrice ;
     double tax = 0.1*((lattequantity + mochaquantity + crappuccinoquantity)*price);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mocha_i= (Button)findViewById(R.id.mocha_increment_id);
+        mocha_i.setOnClickListener(new Clik());
+        mocha_d= (Button)findViewById(R.id.mocha_decrement_id);
+        mocha_d.setOnClickListener(new Clik());
+        crappuccino_i= (Button) findViewById(R.id.crappuccino_increment_id);
+        crappuccino_i.setOnClickListener(new Clik());
+        crappuccino_d= (Button) findViewById(R.id.crappucino_decrement_id);
+        crappuccino_d.setOnClickListener(new Clik());
+        latte_i=(Button)findViewById(R.id.latteprice_increment_id);
+        latte_i.setOnClickListener(new Clik());
+        latte_d=(Button)findViewById(R.id.latteprice_decrement_id);
+        latte_d.setOnClickListener(new Clik());
+
+
     }
     public void submitOrder(View v){
         Intent jumppage= new Intent(MainActivity.this, com.example.android.test1.Display.class);
@@ -65,11 +79,63 @@ public class MainActivity extends AppCompatActivity {
      *
      * This method is called when the - is clicked.
      */
-    public void mochaincrement(View view)
+
+    public class Clik implements View.OnClickListener {
+        public void onClick(View v) {
+            switch (v.getId()) {
+
+                case R.id.mocha_increment_id: {
+                    mochaquantity ++;
+                    mocadisplay(mochaquantity);
+                    //mocaEachPrice = price * mochaquantity;
+                    //price_display(mocaEachPrice);
+                    break;
+                }
+                case R.id.mocha_decrement_id: {
+                    if (mochaquantity>0){
+                    mochaquantity --;
+                    mocadisplay(mochaquantity);
+                    }
+                    //mocaEachPrice = price * mochaquantity;
+                    //price_display(mocaEachPrice);
+                    break;
+                }
+                case R.id.crappuccino_increment_id:{
+                    crappuccinoquantity++;
+                    crappucinodisplay(crappuccinoquantity);
+                    break;
+                }
+                case R.id.crappucino_decrement_id:{
+                    if(crappuccinoquantity >0){
+                    crappuccinoquantity--;
+                    crappucinodisplay(crappuccinoquantity);
+                    }
+                    break;
+                }
+
+                case R.id.latteprice_increment_id:{
+                    lattequantity++;
+                    lattedisplay(lattequantity);
+                    break;
+                }
+                case R.id.latteprice_decrement_id:{
+                    if(lattequantity>0){
+                    lattequantity--;
+                    lattedisplay(lattequantity);
+                    }
+                    break;
+                }
+
+            }
+        }
+    }
+ /*   public void mochaincrement(View view)
     {
         Log.d("Main", getResources().getResourceEntryName(view.getId()));
         mochaquantity = mochaquantity + 1;
         mocadisplay(mochaquantity);
+        mocaEachPrice=price*mochaquantity;
+        price_display(mocaEachPrice);
     }
 
     public void mochadecrement(View view)
@@ -79,17 +145,19 @@ public class MainActivity extends AppCompatActivity {
         {
             mochaquantity = mochaquantity - 1;
             mocadisplay(mochaquantity);
+            mocaEachPrice=-price;
+            price_display(mocaEachPrice);
         }
+        else {}
     }
 
     public void crappucinoincrement(View view)
     {
         crappuccinoquantity = crappuccinoquantity + 1;
         crappucinodisplay(crappuccinoquantity);
-        crappuccinoquantity=crappuccinoquantity;
 
-        crappuccinoEachPrice=(crappuccinoEachPrice*crappuccinoquantity);
-        crappuccinoprice(crappuccinoEachPrice);
+        crappuccinoEachPrice=price*crappuccinoquantity;
+        price_display(crappuccinoEachPrice);
 
 
     }
@@ -100,13 +168,19 @@ public class MainActivity extends AppCompatActivity {
         {
             crappuccinoquantity = crappuccinoquantity - 1;
             crappucinodisplay(crappuccinoquantity);
+            crappuccinoEachPrice=-price;
+            price_display(crappuccinoEachPrice);
         }
+        else{}
     }
 
     public void latteincrement(View view)
     {
         lattequantity = lattequantity + 1;
         lattedisplay(lattequantity);
+        latteEachPrice=price*lattequantity;
+        price_display(latteEachPrice);
+
     }
 
     public void lattedecrement(View view)
@@ -114,9 +188,12 @@ public class MainActivity extends AppCompatActivity {
         if (lattequantity > 0) {
             lattequantity = lattequantity - 1;
             lattedisplay(lattequantity);
+            latteEachPrice=-price;
+            price_display(latteEachPrice);
         }
+        else {}
     }
-
+*/
 
     /**
      * This method displays the given price on the screen.
@@ -130,19 +207,13 @@ public class MainActivity extends AppCompatActivity {
         /*
          * displays the quantity
          */
-        TextView quantityTextView = (TextView) findViewById(R.id.crappuccinoprice_text_view);
+        TextView quantityTextView = (TextView) findViewById(R.id.crappuccinoquantity_text_view);
         quantityTextView.setText("" + number);
     }
-    public void crappuccinoprice(int number)
-    {
-        /*
-         * displays the price per
-         */
-        TextView priceTextView = (TextView) findViewById(R.id.crappuccinoquantity);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
+
 
     public void lattedisplay(int number) {
+
         TextView quantityTextView = (TextView) findViewById(R.id.lattequantity_text_view);
         quantityTextView.setText("" + number);
     }
