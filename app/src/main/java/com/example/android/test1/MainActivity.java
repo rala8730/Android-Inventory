@@ -27,9 +27,10 @@ import java.text.NumberFormat;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    public static final String TOTAL_ITEMS = "totalItems";
-    public static final String TOTAL_Price="totalprice";
+    public static final String TOTAL_ITEMS ="totalItems";
+    public static final String TOTAL_PRICE="totalprice";
     Button mocha_i, latte_i, crappuccino_i, mocha_d, latte_d, crappuccino_d;
+
     int lattequantity, mochaquantity, crappuccinoquantity = 0;
     int price = 3;
     int crappuccinoEachPrice,mocaEachPrice,latteEachPrice ;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         mocha_i.setOnClickListener(new Clik());
         mocha_d= (Button)findViewById(R.id.mocha_decrement_id);
         mocha_d.setOnClickListener(new Clik());
+
+
         crappuccino_i= (Button) findViewById(R.id.crappuccino_increment_id);
         crappuccino_i.setOnClickListener(new Clik());
         crappuccino_d= (Button) findViewById(R.id.crappucino_decrement_id);
@@ -58,15 +61,10 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View v){
         Intent jumppage= new Intent(MainActivity.this, com.example.android.test1.Display.class);
         jumppage.putExtra(TOTAL_ITEMS, lattequantity + mochaquantity + crappuccinoquantity);
-        jumppage.putExtra(TOTAL_Price,(lattequantity+mochaquantity+crappuccinoquantity)*price + tax);
+        jumppage.putExtra(TOTAL_PRICE,(lattequantity+mochaquantity+crappuccinoquantity)*price + tax);
         startActivity(jumppage);
     }
 
-    public void total(View view)
-    {
-        String PriceMessage = (lattequantity + mochaquantity + crappuccinoquantity) + "\r\nLatte = " + lattequantity + "\r\nCrappuccino = " + crappuccinoquantity + "\r\nMocha = " + mochaquantity + "\r\nTotal price = $" + ((tax) + ((lattequantity + mochaquantity + crappuccinoquantity) * (price))) + "\r\n\r\nThank you for shopping today ^__^" + "\r\n\t\nHave a nice Day";
-        displayMessage(PriceMessage);
-    }
 
     public void clear(View view)
     {
@@ -82,46 +80,49 @@ public class MainActivity extends AppCompatActivity {
 
     public class Clik implements View.OnClickListener {
         public void onClick(View v) {
-            switch (v.getId()) {
+            int id=v.getId();
+            switch (id) {
 
                 case R.id.mocha_increment_id: {
                     mochaquantity ++;
-                    mocadisplay(mochaquantity);
-                    //mocaEachPrice = price * mochaquantity;
-                    //price_display(mocaEachPrice);
+                    display(mochaquantity);
+                    display(eachprice(price,mochaquantity));
                     break;
                 }
                 case R.id.mocha_decrement_id: {
                     if (mochaquantity>0){
-                    mochaquantity --;
-                    mocadisplay(mochaquantity);
+                        mochaquantity --;
+                        display(mochaquantity);
+                        display(eachprice(price,mochaquantity));
                     }
-                    //mocaEachPrice = price * mochaquantity;
-                    //price_display(mocaEachPrice);
                     break;
                 }
                 case R.id.crappuccino_increment_id:{
                     crappuccinoquantity++;
-                    crappucinodisplay(crappuccinoquantity);
+                    display(crappuccinoquantity);
+                    display(eachprice(price,crappuccinoquantity));
                     break;
                 }
                 case R.id.crappucino_decrement_id:{
                     if(crappuccinoquantity >0){
-                    crappuccinoquantity--;
-                    crappucinodisplay(crappuccinoquantity);
+                        crappuccinoquantity--;
+                        display(crappuccinoquantity);
+                        display(eachprice(price,crappuccinoquantity));
                     }
                     break;
                 }
 
                 case R.id.latteprice_increment_id:{
                     lattequantity++;
-                    lattedisplay(lattequantity);
+                    display(lattequantity);
+                    display(eachprice(price,lattequantity));
                     break;
                 }
                 case R.id.latteprice_decrement_id:{
                     if(lattequantity>0){
-                    lattequantity--;
-                    lattedisplay(lattequantity);
+                        lattequantity--;
+                        display(lattequantity);
+                        display(eachprice(price,lattequantity));
                     }
                     break;
                 }
@@ -129,109 +130,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
- /*   public void mochaincrement(View view)
-    {
-        Log.d("Main", getResources().getResourceEntryName(view.getId()));
-        mochaquantity = mochaquantity + 1;
-        mocadisplay(mochaquantity);
-        mocaEachPrice=price*mochaquantity;
-        price_display(mocaEachPrice);
-    }
 
-    public void mochadecrement(View view)
-
-    {
-        if (mochaquantity > 0)
-        {
-            mochaquantity = mochaquantity - 1;
-            mocadisplay(mochaquantity);
-            mocaEachPrice=-price;
-            price_display(mocaEachPrice);
-        }
-        else {}
-    }
-
-    public void crappucinoincrement(View view)
-    {
-        crappuccinoquantity = crappuccinoquantity + 1;
-        crappucinodisplay(crappuccinoquantity);
-
-        crappuccinoEachPrice=price*crappuccinoquantity;
-        price_display(crappuccinoEachPrice);
-
-
-    }
-
-    public void crappucinodecrement(View view)
-    {
-        if (crappuccinoquantity > 0)
-        {
-            crappuccinoquantity = crappuccinoquantity - 1;
-            crappucinodisplay(crappuccinoquantity);
-            crappuccinoEachPrice=-price;
-            price_display(crappuccinoEachPrice);
-        }
-        else{}
-    }
-
-    public void latteincrement(View view)
-    {
-        lattequantity = lattequantity + 1;
-        lattedisplay(lattequantity);
-        latteEachPrice=price*lattequantity;
-        price_display(latteEachPrice);
-
-    }
-
-    public void lattedecrement(View view)
-    {
-        if (lattequantity > 0) {
-            lattequantity = lattequantity - 1;
-            lattedisplay(lattequantity);
-            latteEachPrice=-price;
-            price_display(latteEachPrice);
-        }
-        else {}
-    }
-*/
 
     /**
      * This method displays the given price on the screen.
      */
-    public void mocadisplay(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.Mocaquantity_text_view);
-        quantityTextView.setText("" + number);
+    public int eachprice(int amount, int quantity){
+        return amount*quantity;
     }
-
-    public void crappucinodisplay(int number) {
-        /*
-         * displays the quantity
-         */
-        TextView quantityTextView = (TextView) findViewById(R.id.crappuccinoquantity_text_view);
-        quantityTextView.setText("" + number);
-    }
-
-
-    public void lattedisplay(int number) {
-
-        TextView quantityTextView = (TextView) findViewById(R.id.lattequantity_text_view);
-        quantityTextView.setText("" + number);
-    }
-
-
-
-    /**
-     * this method displays the given text on the screen in the end of line .
-     */
-    public void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+    public void display( int number){
+        if(number==crappuccinoquantity){
+                TextView quantityTextView = (TextView) findViewById(R.id.crappuccinoquantity_text_view);
+                quantityTextView.setText("" + crappuccinoquantity);
+            }
+            else if(number==mochaquantity){
+                TextView quantityTextView = (TextView) findViewById(R.id.Mocaquantity_text_view);
+                quantityTextView.setText("" + number);
+            }
+            else if(number==lattequantity){
+                TextView quantityTextView = (TextView) findViewById(R.id.lattequantity_text_view);
+                quantityTextView.setText("" + number);
+            }
 
     }
 
-    /* things to add
-     * welcome message  with welcome screen
-     * list of inventory  clothing section  or bakery section
-     *
-     */
 }

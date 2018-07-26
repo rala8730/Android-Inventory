@@ -15,9 +15,6 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        int totalItems = getIntent().getIntExtra(MainActivity.TOTAL_ITEMS, 0);
-        int totalprice=getIntent().getIntExtra(MainActivity.TOTAL_Price,0);
-
     }
     public void back(View view)
     {

@@ -19,12 +19,12 @@
         android:textAllCaps="true" />
 
     <TextView
+        android:id="@+id/total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
-        android:text="price"
-        android:textAllCaps="true" />
+        android:textAllCaps="true"/>
 
     <Button
         android:layout_width="wrap_content"
