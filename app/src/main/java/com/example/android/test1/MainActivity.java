@@ -22,10 +22,6 @@ import com.example.android.test1.R;
 
 import java.text.NumberFormat;
 
-
-/**
- * This app displays an order form to order coffee.
- */
 public class MainActivity extends AppCompatActivity {
     public static final String TOTAL_ITEMS ="totalItems";
     public static final String TOTAL_PRICE="totalprice";
@@ -33,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     int lattequantity, mochaquantity, crappuccinoquantity = 0;
     int price = 3;
-    int crappuccinoEachPrice,mocaEachPrice,latteEachPrice ;
+    int crappuccinoEachPrice,mocaEachPrice,latteEachPrice;
     double tax = 0.1*((lattequantity + mochaquantity + crappuccinoquantity)*price);
 
     @Override
@@ -62,13 +58,6 @@ public class MainActivity extends AppCompatActivity {
         Intent jumppage= new Intent(MainActivity.this, com.example.android.test1.Display.class);
         jumppage.putExtra(TOTAL_ITEMS, lattequantity + mochaquantity + crappuccinoquantity);
         jumppage.putExtra(TOTAL_PRICE,(lattequantity+mochaquantity+crappuccinoquantity)*price + tax);
-        startActivity(jumppage);
-    }
-
-
-    public void clear(View view)
-    {
-        Intent jumppage=new Intent(MainActivity.this,Main2Activity.class);
         startActivity(jumppage);
     }
 
